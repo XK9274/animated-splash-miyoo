@@ -50,3 +50,14 @@ Accepts a path to output to
 ### Example
 `# ./deconstructor ../logos/spotify-taiga.gif ./gifdump`
 
+# Building
+
+You'll need the following in your build environment to cross compile:
+
+- SDL1.2
+- SDL1.2 Image
+
+- libpng
+- libgif
+
+
