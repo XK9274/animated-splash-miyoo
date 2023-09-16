@@ -4,13 +4,14 @@ Animated SDL1.2 splash screen &amp; GIF Deconstructor sister app
 # Example
 
 
-
 https://github.com/XK9274/animated-splash-miyoo/assets/47260768/3dace5c3-8116-4076-b944-a97606b43588
 
 
+## Remember to set your LD_LIBRARY_PATH to where you store libpng, libsdl, libgif etc.
+
 # rapid-splash overview:
 
-Will display a series of .png files as an animation, rotozoom isn't used as it's super slow for this application
+Will display a series of .png files as an animation, rotozoom isn't used as it's super slow for this application 
 
  ## Library requirements
 ```
@@ -20,6 +21,11 @@ libSDL-1.2.so.0
 ```
 
 ## Usage
+
+Accepts the image path (path to where all your frames are stored, eg. frame0001, frame0002 (in this format, use the deconstructor)
+Accepts a background image colour (incase your gif isn't 640x480, you can fill the bg with a colour)
+Accepts the frame duration (per gif, you'll need to figure this out)
+
 `Usage: %s <image_path> <red> <green> <blue> <frame_duration> [debug]`
 
 ### Example
@@ -36,6 +42,9 @@ libpng12.so.0
 ```
 
 ## Usage
+Accepts a path to a gif
+Accepts a path to output to 
+
 `Usage: %s <gif_file_path> <output_folder>`
 
 ### Example
