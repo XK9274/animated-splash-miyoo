@@ -23,7 +23,9 @@ libSDL-1.2.so.0
 ## Usage
 
 Accepts the image path (path to where all your frames are stored, eg. frame0001, frame0002 (in this format, use the deconstructor)
+
 Accepts a background image colour (incase your gif isn't 640x480, you can fill the bg with a colour)
+
 Accepts the frame duration (per gif, you'll need to figure this out)
 
 `Usage: %s <image_path> <red> <green> <blue> <frame_duration> [debug]`
@@ -43,6 +45,7 @@ libpng12.so.0
 
 ## Usage
 Accepts a path to a gif
+
 Accepts a path to output to 
 
 `Usage: %s <gif_file_path> <output_folder>`
