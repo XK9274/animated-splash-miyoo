@@ -74,6 +74,7 @@ int load_next_frame(void* data) {
     if (frame == NULL) {
         if (debugging) {
             fprintf(stderr, "Failed to load image: %s\n", IMG_GetError());
+            SDL_Quit();
         }
         return 1;
     } else {
