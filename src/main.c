@@ -3,11 +3,18 @@
 #include "SDL/SDL_thread.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
 SDL_Surface* nextFrame = NULL;
 int nextFrameNumber = 0;
 const char* image_path;
 int debugging = 0;
+int breakout = 1;
+
+int file_exists(const char* filename) {
+    struct stat buffer;
+    return (stat(filename, &buffer) == 0);
+}
 
 SDL_Surface* rotate180(SDL_Surface* src) { // custom rotate, rotozoom is very slow.
     if (debugging) {
@@ -70,6 +77,13 @@ int load_next_frame(void* data) {
     char filename[256];
     snprintf(filename, sizeof(filename), "%s/frame%04d.png", image_path, nextFrameNumber);
     SDL_Surface* frame = IMG_Load(filename);
+    
+    if(!file_exists(filename)) {
+        if (debugging) {
+            fprintf(stderr, "File %s does not exist. End of files!\n", filename);
+        }
+        breakout = 0;
+    }
     
     if (frame == NULL) {
         if (debugging) {
@@ -147,7 +161,7 @@ int main(int argc, char* argv[]) {
     }
 
     int i = 1;
-    while (1) {
+    while (breakout) {
         if (debugging) {
             fprintf(stderr, "Waiting for thread to complete...\n");
         }
@@ -202,10 +216,11 @@ int main(int argc, char* argv[]) {
             fprintf(stderr, "Continuing to next iteration...\n");
         }
     }
-
-    SDL_Quit();
+    
     if (debugging) {
-        fprintf(stderr, "Exiting main\n");
+        fprintf(stderr, "Breaking out! End of images\n");
     }
+    SDL_Quit();
+
     return 0;
 }
